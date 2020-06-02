@@ -3,7 +3,7 @@ const util = require('util')
 const Discord = require('discord.js')
 module.exports = class PingCommand extends BaseCommand {
   constructor() {
-    super('eval', 'Eval javascript code as client', []);
+    super('eval', 'Eval javascript code as client', [], 'Eval code as the client');
   }
 
   async run(client, message, args) {
@@ -33,7 +33,7 @@ module.exports = class PingCommand extends BaseCommand {
     
     function clean(text) {
         if (typeof text !== `string`)
-            text = require(`util`).inspect(text)
+            text = require(`util`).inspect(text, { depth: 0 })
         let rege = new RegExp(process.env.DISCORD_BOT_TOKEN, "gi");
         if(text == process.env.DISCORD_BOT_TOKEN) return text = "Here is your token: ||[REDACTED]||"
         return text;
