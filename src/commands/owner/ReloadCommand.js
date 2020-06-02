@@ -9,10 +9,15 @@ module.exports = class ReloadCommand extends BaseCommand {
   async run(client, message, args) {
 
     let loading = await message.channel.send(client.resource.loading());
-    await reloadCommands(client)
+    try{
+      reloadCommands(client)
+    }catch(e){
+      console.log(`WOW DATA: ` + e)
+    }
+    
     loading.edit(client.resource.embed()
       .setTitle(`Success! <:check:694636220571189389>`)
-      .setDescription(`Reloaded all commands.`)
+      .setDescription(`Reloaded \`${client.commands.size}\` commands.`)
     );
   }
 }
