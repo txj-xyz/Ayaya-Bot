@@ -3,7 +3,7 @@ const { reloadCommands } = require('../../utils/registry');
 
 module.exports = class PingCommand extends BaseCommand {
   constructor() {
-    super('reload', 'Reload all commands', []);
+    super('reload', 'Reload all commands', [], 'Reload commands with this!');
   }
 
   async run(client, message, args) {
