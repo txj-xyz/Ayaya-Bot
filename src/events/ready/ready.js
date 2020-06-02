@@ -5,6 +5,8 @@ module.exports = class ReadyEvent extends BaseEvent {
     super('ready');
   }
   async run (client) {
+    client.user.setPresence({ activity: { type: 'LISTENING', name: `${client.guilds.cache.size} servers. | ${process.env.DISCORD_BOT_PREFIX}help` }})
+    console.log(`[INFO] - Presence set: LISTENING to ${client.guilds.cache.size} servers. | ${process.env.DISCORD_BOT_PREFIX}help`)
     console.log(client.user.tag + ' has logged in.');
   }
 }
