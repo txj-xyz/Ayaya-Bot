@@ -2,7 +2,7 @@ const BaseCommand = require('../../utils/structures/BaseCommand');
 
 module.exports = class PingCommand extends BaseCommand {
   constructor() {
-    super('ping', 'test', []);
+    super('ping', 'test', [], 'Ping the websocket with this command.');
   }
 
   async run(client, message, args) {
