@@ -14,6 +14,7 @@ module.exports = class MessageEvent extends BaseEvent {
       .split(/\s+/);
       const command = client.commands.get(cmdName);
       if (command) {
+        console.log(`[INFO] - Command executed [${command.name}] in channel [${message.channel.name}]`)
         command.run(client, message, cmdArgs);
       }
     }
