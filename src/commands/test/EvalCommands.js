@@ -1,7 +1,8 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
 const util = require('util')
 const Discord = require('discord.js')
-module.exports = class PingCommand extends BaseCommand {
+
+module.exports = class EvalCommand extends BaseCommand {
   constructor() {
     super('eval', 'Eval javascript code as client', [], 'Eval code as the client');
   }

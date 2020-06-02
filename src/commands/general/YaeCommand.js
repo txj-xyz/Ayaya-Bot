@@ -2,7 +2,7 @@ const BaseCommand = require('../../utils/structures/BaseCommand');
 const Nekos = require('nekos.life')
 const yae = new Nekos();
 
-module.exports = class PingCommand extends BaseCommand {
+module.exports = class YaeCommand extends BaseCommand {
   constructor() {
     super('yae', 'general', [], 'Get random picture from nekos.life');
   }

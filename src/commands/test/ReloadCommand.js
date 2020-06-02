@@ -1,7 +1,7 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
 const { reloadCommands } = require('../../utils/registry');
 
-module.exports = class PingCommand extends BaseCommand {
+module.exports = class ReloadCommand extends BaseCommand {
   constructor() {
     super('reload', 'Reload all commands', [], 'Reload commands with this!');
   }

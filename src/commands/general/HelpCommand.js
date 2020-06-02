@@ -1,7 +1,7 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
 let commandsListing = '';
 
-module.exports = class PingCommand extends BaseCommand {
+module.exports = class HelpCommand extends BaseCommand {
   constructor() {
     super('help', 'general', [], 'Shows this help page!');
   }
