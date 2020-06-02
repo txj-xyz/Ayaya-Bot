@@ -15,10 +15,34 @@ async function registerCommands(client, dir = '') {
       if (Command.prototype instanceof BaseCommand) {
         const cmd = new Command();
         client.commands.set(cmd.name, cmd);
-        console.log(`[INFO] Loaded [${cmd.name}]`)
+        console.log(`[INFO] [${cmd.name}]`)
+        console.log(path.join(filePath, file))
         cmd.aliases.forEach((alias) => {
           client.commands.set(alias, cmd);
-          console.log(`[INFO] Loaded alias [${alias}]`)
+          console.log(`[INFO] alias [${alias}]`)
+        });
+      }
+    }
+  }
+}
+
+async function reloadCommands(client, dir = '') {
+  const filePath = path.join(__dirname, dir);
+  const files = await fs.readdir(filePath);
+  for (const file of files) {
+    const stat = await fs.lstat(path.join(filePath, file));
+    if (stat.isDirectory()) reloadCommands(client, path.join(dir, file));
+    if (file.endsWith('.js')) {
+      const Command = require(path.join(filePath, file));
+      if (Command.prototype instanceof BaseCommand) {
+        const cmd = new Command();
+        eval(`delete require.cache[require.resolve('${path.join(filePath, file)}')]`)
+        client.commands.set(cmd.name, cmd);
+        console.log(`[INFO] Reloaded [${cmd.name}]`)
+        console.log(path.join(filePath, file))
+        cmd.aliases.forEach((alias) => {
+          client.commands.set(alias, cmd);
+          console.log(`[INFO] Reloaded alias [${alias}]`)
         });
       }
     }
@@ -45,4 +69,5 @@ async function registerEvents(client, dir = '') {
 module.exports = { 
   registerCommands, 
   registerEvents,
+  reloadCommands,
 };
