@@ -2,7 +2,8 @@ const BaseCommand = require('../../utils/structures/BaseCommand');
 
 let
 cmdGeneral = '',
-cmdOwner = '';
+cmdOwner = '',
+cmdNeko = '';
 
 module.exports = class HelpCommand extends BaseCommand {
   constructor() {
@@ -19,6 +20,9 @@ module.exports = class HelpCommand extends BaseCommand {
       else if(cmdKey.category === 'owner'){
         cmdOwner += `\`${process.env.DISCORD_BOT_PREFIX}${command}\` - ${cmdKey.description}\n`
       }
+      else if(cmdKey.category === 'neko'){
+        cmdNeko += `\`${process.env.DISCORD_BOT_PREFIX}${command}\` - ${cmdKey.description}\n`
+      }
     })
 
     //send help commands
@@ -26,7 +30,8 @@ module.exports = class HelpCommand extends BaseCommand {
       .setTitle(`Aya Commands\n`)
       .setDescription(
         `**General Commands**\n ${cmdGeneral}\n`+
-        `**Owner Commands**\n ${cmdOwner}`
+        `**Owner Commands**\n ${cmdOwner}\n`+
+        `**Neko Commands**\n ${cmdNeko}\n`
       )
     );
   }
