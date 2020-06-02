@@ -5,7 +5,7 @@ module.exports = class PingCommand extends BaseCommand {
     super('ping', 'test', []);
   }
 
-  run(client, message, args) {
-    
+  async run(client, message, args) {
+    message.channel.send(`Pong! ${client.ws.ping}ms`)
   }
 }
