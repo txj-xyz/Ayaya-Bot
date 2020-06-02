@@ -15,7 +15,7 @@ module.exports = class MessageEvent extends BaseEvent {
       const command = client.commands.get(cmdName);
       
       //stop commands for entire category
-      if(client.commands.get(cmdName).category === 'owner' && message.author.id !== process.env.DISCORD_BOT_OWNER) return console.log(`[WARN] - Owner command used without authority - [${message.author.tag}]`)
+      //if(client.commands.get(cmdName).category === 'owner' && message.author.id !== process.env.DISCORD_BOT_OWNER) return console.log(`[WARN] - Owner command used without authority - [${message.author.tag}]`)
       if (command) {
         console.log(`[INFO] - Command executed [${command.name}] in channel [${message.channel.name}]`)
         command.run(client, message, cmdArgs);
