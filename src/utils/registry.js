@@ -15,7 +15,7 @@ async function registerCommands(client, dir = '') {
       if (Command.prototype instanceof BaseCommand) {
         const cmd = new Command();
         client.commands.set(cmd.name, cmd);
-        console.log(`[INFO] Loaded - [${cmd.name}]`)
+        console.log(`[INFO] Loaded - [${cmd.name} - ${cmd.description}]`)
         cmd.aliases.forEach(async (alias) => {
           client.commands.set(alias, cmd);
           console.log(`[INFO] Loaded alias - [${alias}]`)
