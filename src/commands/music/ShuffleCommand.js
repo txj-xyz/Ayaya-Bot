@@ -6,7 +6,7 @@ module.exports = class ShuffleCommand extends BaseCommand {
     super('shuffle', 'music', ['mix'], 'Shuffle the music queue.');
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     let loading = await message.channel.send(client.resource.loading())
 
     const player = client.music.players.get(message.guild.id);

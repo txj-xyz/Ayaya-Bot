@@ -5,7 +5,7 @@ module.exports = class PauseCommand extends BaseCommand {
     super('pause', 'music', ['resume'], 'Pause/Resume the music.');
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     let loading = await message.channel.send(client.resource.loading())
 
     const { voiceChannel } = message.member;
