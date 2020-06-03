@@ -22,7 +22,7 @@ async function registerCommands(client, dir = '') {
                 client.commands.alias.set(alias, cmd);
                 console.log(`[INFO] Loaded alias - [${alias}]`)
               });
-            }, 500)
+            }, 150)
           }
         }
       // } catch(e) {
@@ -47,11 +47,13 @@ async function reloadCommands(client, dir = '../commands') {
           const cmd = new Command();
           await client.commands.set(cmd.name, cmd);
           console.log(`[INFO] Reloaded - [${cmd.name}]`)
-          cmd.aliases.forEach(async (alias) => {
-            delete require.cache[require.resolve(path.join(filePath, file))]
-            await client.commands.alias.set(alias, cmd);
-            console.log(`[INFO] Reloaded alias - [${alias}]`)
-          });
+          setTimeout(()=>{
+            cmd.aliases.forEach(async (alias) => {
+              delete require.cache[require.resolve(path.join(filePath, file))]
+              await client.commands.alias.set(alias, cmd);
+              console.log(`[INFO] Reloaded alias - [${alias}]`)
+            });
+          }, 150)
         }
       }
     // }catch(e){
