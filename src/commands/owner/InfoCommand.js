@@ -14,13 +14,15 @@ module.exports = class InfoCommand extends BaseCommand {
         .setColor('#03a9fc')
         .setTimestamp()
         .setDescription(
-            `\`\`\`\nUptime: ${humanizeDuration(client.uptime)}\n`+
-            `Users: ${client.users.cache.size}\n`+
-            `Guilds: ${client.guilds.cache.size}\n`+
-            `Language: NodeJS\n`+
-            `Memory Usage: ${process.memoryUsage().rss / 1000000}MB\n`+
-            `WS Latency: ${client.ws.ping}ms\n`+
-            `Owner: TXJ#5664\`\`\``
+          `\`\`\`\nUptime: ${humanizeDuration(client.uptime)}\n`+
+          `Users: ${client.users.cache.size}\n`+
+          `Guilds: ${client.guilds.cache.size}\n`+
+          `Language: NodeJS\n`+
+          `Memory Usage: ${process.memoryUsage().rss / 1000000}MB\n`+
+          `WS Latency: ${client.ws.ping}ms\n`+
+          `Owner: TXJ#5664\n`+
+          `Total Commands: ${client.commands.size}\n`+
+          `Total Aliases: ${client.commands.alias.size}\`\`\``
         )
     )
   }
