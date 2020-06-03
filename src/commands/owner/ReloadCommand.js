@@ -12,8 +12,9 @@ module.exports = class ReloadCommand extends BaseCommand {
     await reloadCommands(client)
     
     loading.edit(client.resource.embed()
-      .setTitle(`Success! <:check:694636220571189389>`)
-      .setDescription(`Reloaded \`${client.commands.size}\` commands.`)
+      .setTitle(`<:check:694636220571189389> Success!`)
+      .addField(`Alias Commands`, `\`${client.commands.alias.size}\` reloaded.`, false)
+      .addField(`Base Commands`, `\`${client.commands.size}\` reloaded.`, false)
     );
   }
 }
