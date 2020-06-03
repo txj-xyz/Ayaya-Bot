@@ -7,12 +7,14 @@ module.exports = class RepeatCommand extends BaseCommand {
   }
 
   async run(client, message, args) {
+    let loading = await message.channel.send(client.resource.loading())
+
     const check = client.emojis.cache.get("697805081709510748");
     const cross = client.emojis.cache.get("697805129109209190");
 
     const player = client.music.players.get(message.guild.id);
     if (!player || !player.queue[0]) {
-      return message.channel.send(`No song's currently playing.`)
+      return loading.edit(client.resource.embed().setDescription(`No song's currently playing.`))
     }
 
     if (player.trackRepeat) {
@@ -24,7 +26,7 @@ module.exports = class RepeatCommand extends BaseCommand {
         .setFooter(`Requested by - ${message.author.username}`,message.author.avatarURL())
         .setTimestamp()
 
-      const sentMsg = await message.channel.send(currentTrack);
+      const sentMsg = await loading.edit(currentTrack);
   
       await sentMsg.react(check);
       await sentMsg.react(cross);
@@ -50,7 +52,7 @@ module.exports = class RepeatCommand extends BaseCommand {
         .setFooter(`Requested by - ${message.author.username}`,message.author.avatarURL())
         .setTimestamp()
         
-      const sentMsg = await message.channel.send(currentTrack);
+      const sentMsg = await loading.edit(currentTrack);
 
       await sentMsg.react(check);
       await sentMsg.react(cross);
