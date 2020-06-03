@@ -18,7 +18,7 @@ module.exports = class InfoCommand extends BaseCommand {
             `Users: ${client.users.cache.size}\n`+
             `Guilds: ${client.guilds.cache.size}\n`+
             `Language: NodeJS\n`+
-            `Memory Usage: ${process.memoryUsage().rss / 1000000}\n`+
+            `Memory Usage: ${process.memoryUsage().rss / 1000000}MB\n`+
             `WS Latency: ${client.ws.ping}ms\n`+
             `Owner: TXJ#5664\`\`\``
         )
