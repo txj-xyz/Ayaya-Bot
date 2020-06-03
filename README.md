@@ -1,10 +1,10 @@
 # Ayaya Bot
 
-Ayaya Bot is a bot created off of [slappey]() for the boiler plate and extended from there. The bot is used for Music/Memes/Fun etc, this is just a boiler plate as of right now until I add more things into this when I get time.
+Ayaya Bot is a bot created based off my knowledge of JS, the bot is used for Music/Memes/Fun etc, currently I have a Music structure that supports Youtube's new V3 API.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the dependencies.
+Use the package manager [npm](https://npmjs.org/) to install the dependencies.
 
 ```bash
 npm i
