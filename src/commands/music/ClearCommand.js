@@ -7,14 +7,17 @@ module.exports = class ClearCommand extends BaseCommand {
   }
 
   async run(client, message, args) {
+    let loading = await message.channel.send(client.resource.loading())
+
     const player = client.music.players.get(message.guild.id);
     if (!player || !player.queue[0]) {
-      return message.channel.send(`No song's currently playing.`);
+      
+      return loading.edit(client.resource.embed().setDescription(`No song's currently playing.`))
     }
 
     const voiceChannel  = message.member.voice.channel;
     if (!voiceChannel || voiceChannel.id !== player.voiceChannel.id) {
-      return message.channel.send(`You need to be in the same voice channel as the bot to use this command.`);
+      return loading.edit(client.resource.embed().setDescription(`You need to be in the same voice channel as the bot to use this command.`));
     }
 
     if (args[0]) {
@@ -28,7 +31,7 @@ module.exports = class ClearCommand extends BaseCommand {
         .setFooter(`Requested by - ${message.author.username}`,message.author.avatarURL())
         .setTimestamp()
 
-      const sentMsg = await message.channel.send(checkEmbed);
+      const sentMsg = await loading.edit(checkEmbed);
 
       await sentMsg.react(check);
       await sentMsg.react(cross);
@@ -46,7 +49,7 @@ module.exports = class ClearCommand extends BaseCommand {
       });
     }
     else {
-      return message.channel.send(`Please provide a song number to remove.`);
+      return loading.edit(client.resource.embed().setDescription(`Please provide a song number to remove.`));
     }
   }
 }
