@@ -7,12 +7,14 @@ module.exports = class QueueCommand extends BaseCommand {
   }
 
   async run(client, message, args) {
+    let loading = await message.channel.send(client.resource.loading())
+
     let forward = client.emojis.cache.get('711633615125217330'),
       backward = client.emojis.cache.get('711633615083274280');
 
     const player = client.music.players.get(message.guild.id);
     if (!player || !player.queue[0]) {
-      return message.channel.send(`No song's currently playing.`);
+      return loading.edit(client.resource.embed().setDescription(`No song's currently playing.`));
     }
 
     if (player.queue.size > 10) {
@@ -67,7 +69,7 @@ module.exports = class QueueCommand extends BaseCommand {
         .setFooter(`Requested by - ${message.author.username}`,message.author.avatarURL())
         .setTimestamp()
 
-      message.channel.send(queueEmbed)
+      loading.edit(queueEmbed)
     }
   }
 }
