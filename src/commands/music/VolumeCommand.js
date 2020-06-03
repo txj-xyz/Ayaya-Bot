@@ -22,7 +22,7 @@ module.exports = class VolumeCommand extends BaseCommand {
         .addField(`Invalid Command`, `\`\`\`\nCommand may only be used when music is playing!\n\`\`\``, false)
         .addField(`Requested By`, `\`\`\`\n${message.author.tag}\n\`\`\``, false)
 
-        .setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
+        //.setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
         .setTimestamp()
 
       return message.channel.send(embed);
@@ -35,7 +35,7 @@ module.exports = class VolumeCommand extends BaseCommand {
         .addField(`Invalid Command`, `\`\`\`\nCommand may only be used while you are in the same voice channel as the bot!\n\`\`\``, false)
         .addField(`Requested By`, `\`\`\`\n${message.author.tag}\n\`\`\``, false)
 
-        .setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
+        //.setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
         .setTimestamp()
 
       return message.channel.send(embed);
@@ -48,7 +48,7 @@ module.exports = class VolumeCommand extends BaseCommand {
         .addField(`Invalid Command`, `\`\`\`\nCommand may only be used while you are in the same text channel as the music!\n\`\`\``, false)
         .addField(`Requested By`, `\`\`\`\n${message.author.tag}\n\`\`\``, false)
 
-        .setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
+        //.setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
         .setTimestamp()
 
       return message.channel.send(embed);
@@ -61,7 +61,7 @@ module.exports = class VolumeCommand extends BaseCommand {
           .addField(`Invalid Argument`, `\`\`\`\nArgument may only be a number between 1 - 100!\n\`\`\``, false)
           .addField(`Requested By`, `\`\`\`\n${message.author.tag}\n\`\`\``, false)
 
-          .setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
+          //.setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
           .setTimestamp()
 
         return message.channel.send(embed);
@@ -71,8 +71,6 @@ module.exports = class VolumeCommand extends BaseCommand {
           //.setTitle(`🚫 Error`)
           .addField(`Invalid Command`, `\`\`\`\nCommand may only be used when music is playing!\n\`\`\``, false)
           .addField(`Requested By`, `\`\`\`\n${message.author.tag}\n\`\`\``, false)
-
-          .setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
           .setTimestamp()
 
         return message.channel.send(embed);
@@ -87,17 +85,7 @@ module.exports = class VolumeCommand extends BaseCommand {
           //.setTitle(`🚫 Error`)
           .addField(`Volume Set`, `\n${muted.toString()} ${bar} ${volume.toString()}\n`, false)
           .addField(`Requested By`, `\`\`\`\n${message.author.tag}\n\`\`\``, false)
-
-          .setFooter(`Provided by - *T H E*  B O T`,client.user.avatarURL())
           .setTimestamp()
-        // const volumeEmbed = new MessageEmbed()
-        //   .setAuthor(`Volume Set: ${args[0]}`, `https://i.imgur.com/9r0jjcQ.png`)
-        //   .setDescription(`${muted.toString()} ${bar} ${volume.toString()}`)
-
-        //   .setFooter(`Requested by - ${message.author.username}`,message.author.avatarURL())
-        //   .setColor(config.embedColor)
-        //   .setTimestamp()
-          
         return message.channel.send(volumeEmbed); 
       }
       else {
