@@ -14,7 +14,10 @@ module.exports = class NowPlayingCommand extends BaseCommand {
 
     const player = client.music.players.get(message.guild.id);
     if (!player || !player.queue[0]) {
-      return message.channel.send(`No song's currently playing.`)
+      return loading.edit(client.resource.embed()
+        .setAuthor("Failed", "https://cdn.discordapp.com/emojis/694636239810330724.png", "https://discord.gg/CSJkCGx")
+        .setDescription(`Nothing is playing!`)
+      )
     }
 
     let track = player.queue[0],
