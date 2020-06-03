@@ -7,14 +7,16 @@ module.exports = class SkipCommand extends BaseCommand {
   }
 
   run(client, message, args) {
+    let loading = await message.channel.send(client.resource.loading())
+
     const player = client.music.players.get(message.guild.id);
     if (!player) {
-      return message.channel.send(`No song's currently playing.`);
+      return loading.edit(client.resource.embed().setDescription(`No song's currently playing.`));
     }
 
     const voiceChannel  = message.member.voice.channel;
     if (!voiceChannel || voiceChannel.id !== player.voiceChannel.id) {
-      return message.channel.send(`You need to be in the same voice channel as the bot to use this command.`);
+      return loading.edit(client.resource.embed().setDescription(`You need to be in the same voice channel as the bot to use this command.`));
     }
 
     const skipEmbed = new MessageEmbed()
@@ -25,7 +27,7 @@ module.exports = class SkipCommand extends BaseCommand {
       .setFooter(`Requested by - ${message.author.username}`,message.author.avatarURL())
       .setTimestamp()
 
-    message.channel.send(skipEmbed)
+    loading.edit(skipEmbed)
     player.stop();
     return;
   }
