@@ -4,7 +4,7 @@ module.exports = class PingCommand extends BaseCommand {
   constructor() {
     super('ping', 'general', [], 'Ping the websocket with this command.');
   }
-
+  //weird comment
   async run(client, message, args) {
     //send loading embed
     let loading = await message.channel.send(client.resource.loading())
