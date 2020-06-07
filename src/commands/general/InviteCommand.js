@@ -8,6 +8,7 @@ module.exports = class InviteCommand extends BaseCommand {
   async run(client, message, args) {
     let loading = await message.channel.send(client.resource.loading())
     loading.edit(client.resource.embed()
+      .setTitle(`Invite the bot!`)
       .setDescription(`https://discord.com/oauth2/authorize?client_id=717080513898217482&permissions=37013568&scope=bot`)
     );
   }
