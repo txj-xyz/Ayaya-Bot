@@ -37,6 +37,7 @@ module.exports = class RepeatCommand extends BaseCommand {
       collector.on('collect', (reaction, user) => {
         if (reaction.emoji.name === check.name) {
           player.setTrackRepeat(false);
+          reaction.reactions.removeAll()
         }
         else if (reaction.emoji.name === cross.name) {
           collector.stop();
