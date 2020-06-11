@@ -19,7 +19,7 @@ async function registerCommands(client, dir = '') {
             console.log(`[INFO] Loaded - [${cmd.name} - ${cmd.description}]`)
             setTimeout(()=>{
               cmd.aliases.forEach(async (alias) => {
-                client.commands.alias.set(alias, cmd);
+                client.alias.set(alias, cmd);
                 console.log(`[INFO] Loaded alias - [${alias}]`)
               });
             }, 150)
@@ -50,7 +50,7 @@ async function reloadCommands(client, dir = '../commands') {
           setTimeout(()=>{
             cmd.aliases.forEach(async (alias) => {
               delete require.cache[require.resolve(path.join(filePath, file))]
-              await client.commands.alias.set(alias, cmd);
+              await client.alias.set(alias, cmd);
               console.log(`[INFO] Reloaded alias - [${alias}]`)
             });
           }, 150)
