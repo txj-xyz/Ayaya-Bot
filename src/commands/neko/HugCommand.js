@@ -13,9 +13,17 @@ module.exports = class HugCommand extends BaseCommand {
     let img = await yae.sfw.hug();
 
     try{
-      loading.edit(client.resource.embed()
-        .setImage(img.url)
-      );
+      if(message.mentions.users.first()){
+        loading.edit(client.resource.embed()
+          .setDescription(`<@${message.author.id}> hugged ${message.mentions.users.first()} **\\OwO/*`)
+          .setImage(img.url)
+        );
+      }
+      else{
+        loading.edit(client.resource.embed()
+          .setImage(img.url)
+        );
+      }
     } catch(e){
       console.log(`[ERROR] - (HUG) - Failed to retrieve image from API.`)
       loading.edit(client.resource.embed()
