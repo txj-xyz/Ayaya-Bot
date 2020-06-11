@@ -13,7 +13,7 @@ module.exports = class ReloadCommand extends BaseCommand {
     
     loading.edit(client.resource.embed()
       .setTitle(`<:check:694636220571189389> Success!`)
-      .addField(`Alias Commands`, `\`${client.commands.alias.size}\` reloaded.`, false)
+      .addField(`Alias Commands`, `\`${client.alias.size}\` reloaded.`, false)
       .addField(`Base Commands`, `\`${client.commands.size}\` reloaded.`, false)
     );
   }

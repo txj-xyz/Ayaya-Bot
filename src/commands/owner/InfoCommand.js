@@ -22,7 +22,7 @@ module.exports = class InfoCommand extends BaseCommand {
           `WS Latency: ${client.ws.ping}ms\n`+
           `Owner: TXJ#5664\n`+
           `Total Commands: ${client.commands.size}\n`+
-          `Total Aliases: ${client.commands.alias.size}\`\`\``
+          `Total Aliases: ${client.alias.size}\`\`\``
         )
     )
   }
