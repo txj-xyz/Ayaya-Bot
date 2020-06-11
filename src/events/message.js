@@ -13,7 +13,7 @@ module.exports = class MessageEvent extends BaseEvent {
       .trim()
       .split(/\s+/);
       const command = client.commands.get(cmdName);
-      const aliascommand = client.commands.alias.get(cmdName);
+      const aliascommand = client.alias.get(cmdName);
       
       if (command) {
         if(client.commands.get(cmdName).category === 'owner' && message.author.id !== process.env.DISCORD_BOT_OWNER) return console.log(`[WARN] - Owner command used without authority - [${message.author.tag}]`)
@@ -22,7 +22,7 @@ module.exports = class MessageEvent extends BaseEvent {
       }
       //setup alias handler for the seperate map here
       if (aliascommand) {
-        if(client.commands.alias.get(cmdName).category === 'owner' && message.author.id !== process.env.DISCORD_BOT_OWNER) return console.log(`[WARN] - Owner command used without authority - [${message.author.tag}]`)
+        if(client.alias.get(cmdName).category === 'owner' && message.author.id !== process.env.DISCORD_BOT_OWNER) return console.log(`[WARN] - Owner command used without authority - [${message.author.tag}]`)
         console.log(`[INFO] - Command executed [${aliascommand.name}] in channel [${message.channel.name}]`)
         aliascommand.run(client, message, cmdArgs); //run the alias command
       }
