@@ -1,6 +1,4 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
-const util = require('util')
-const Discord = require('discord.js')
 
 module.exports = class EvalCommand extends BaseCommand {
   constructor() {
