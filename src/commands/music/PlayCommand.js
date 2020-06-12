@@ -20,7 +20,7 @@ module.exports = class PlayCommand extends BaseCommand {
     if (!permissions.has(`CONNECT`) || !permissions.has(`SPEAK`)) {
       return loading.edit(client.resource.embed()
       .setAuthor("Failed", "https://cdn.discordapp.com/emojis/694636239810330724.png", "https://discord.gg/CSJkCGx")
-      .setDescription(``));
+      .setDescription(`I do not have permissions to speak in the channel you are in, please give me permissions to join.`));
     }
 
     if (!args[0]) {
