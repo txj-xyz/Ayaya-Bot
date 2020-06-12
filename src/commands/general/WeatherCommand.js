@@ -14,7 +14,6 @@ module.exports = class WeatherCommand extends BaseCommand {
       if(!args) return;
       if(err) return loading.edit(client.resource.embed().setDescription(`There was an error with your request, please try this again, perhaps check the details of what you're searching.`));
       if(!data[0]) return loading.edit(client.resource.embed().setDescription(`No data was found for \`${args.join(" ")}\`, please try your search again.`))
-    )
       loading.edit(client.resource.embed()
         .setTitle(`Weather for ${data[0].location.name}`)
         .setFooter(`Scanned at: ${current.observationtime}`)
