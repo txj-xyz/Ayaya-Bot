@@ -4,6 +4,7 @@ const { registerCommands, registerEvents } = require('./utils/registry');
 const client = new Client();
 
 (async () => {
+  client.loadfail = [];
   client.commands = new Map();
   client.alias = new Map();
   client.events = new Map();
