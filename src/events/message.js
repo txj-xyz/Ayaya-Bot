@@ -18,12 +18,28 @@ module.exports = class MessageEvent extends BaseEvent {
       if (command) {
         if(client.commands.get(cmdName).category === 'owner' && message.author.id !== process.env.DISCORD_BOT_OWNER) return console.log(`[WARN] - Owner command used without authority - [${message.author.tag}]`)
         console.log(`[INFO] - Command executed [${command.name}] in channel [${message.channel.name}]`)
+        client.resource.sendLive(
+          client, process.env.LIVE_CHANNEL,
+          `[INFO] - Command executed`,
+          `Command: ${command.name}\n`+
+          `Args: ${cmdArgs.join(` `)}\n`+
+          `User: ${message.author.tag}\n`+
+          `User ID: ${message.author.id}`
+        )
         command.run(client, message, cmdArgs);
       }
       //setup alias handler for the seperate map here
       if (aliascommand) {
         if(client.alias.get(cmdName).category === 'owner' && message.author.id !== process.env.DISCORD_BOT_OWNER) return console.log(`[WARN] - Owner command used without authority - [${message.author.tag}]`)
         console.log(`[INFO] - Command executed [${aliascommand.name}] in channel [${message.channel.name}]`)
+        client.resource.sendLive(
+          client, process.env.LIVE_CHANNEL,
+          `[INFO] - Command executed`,
+          `Command: ${command.name}\n`+
+          `Args: ${cmdArgs.join(` `)}\n`+
+          `User: ${message.author.tag}\n`+
+          `User ID: ${message.author.id}`
+        )
         aliascommand.run(client, message, cmdArgs); //run the alias command
       }
     }
