@@ -11,14 +11,12 @@ npm i
 ```
 
 ## Usage / Running the bot
+Rename the `.env_example` file to `.env` and add in the required information.
 
-`git clone` the repo and start the project with
-```
-npm run start
-```
-or start the bot with PM2
-```
-pm2 start pm2.json
+`git clone` the repo and start the project with the following commands.
+```bash
+Start with NPM: npm run start
+Start with PM2: pm2 start pm2.json
 ```
 
 ## Contributing
