@@ -10,22 +10,22 @@ async function registerCommands(client, dir = '') {
 
   for (const file of files) {
     const stat = await fs.lstat(path.join(filePath, file));
-    if (stat.isDirectory()) registerCommands(client, path.join(dir, file)); //TODO: POSSIBLY REWRITE THIS, this gets called 5 times beacuse of the folder layout
+    if (stat.isDirectory()) registerCommands(client, path.join(dir, file));
     if (file.endsWith('.js')) {
       try{
         Command = require(path.join(filePath, file));
       }
       catch{
-        //console.log(`BEFORE SET REGISTER COMMAND:`, client.loadfail)
         client.loadfail = [];
         client.loadfail.push(`${file.substring(0, file.length-3)} - LOAD FAILED`)
-        //console.log(`AFTER SET REGISTER COMMAND:`, client.loadfail)
+        client.resource.sendLive(client, process.env.LIVE_CHANNEL, `[ERROR]`, `Loading Failed - [${file.substring(0, file.length-3)}]`)
         console.log(`[ERROR] Loading Failed - [${file.substring(0, file.length-3)}]`);
         return;
       }
       if (Command.prototype instanceof BaseCommand) {
         const cmd = new Command();
         client.commands.set(cmd.name, cmd);
+        //client.resource.sendLive(client, process.env.LIVE_CHANNEL, `[INFO]`, `Loaded - [${cmd.name} - ${cmd.description}]`)
         console.log(`[INFO] Loaded - [${cmd.name} - ${cmd.description}]`)
         //Setup alias registry here
         setTimeout(()=>{
@@ -51,6 +51,7 @@ async function reloadCommands(client, dir = '../commands') {
         Command = require(path.join(filePath, file));
       }catch{
         client.loadfail.push(`${file.substring(0, file.length-3)} - RELOAD FAILED`)
+        client.resource.sendLive(client, process.env.LIVE_CHANNEL, `[ERROR]`, `Reloading Failed -  [${file.substring(0, file.length-3)}]`)
         console.log(`[ERROR] Reloading Failed -  [${file.substring(0, file.length-3)}]`);
         return;
       }
