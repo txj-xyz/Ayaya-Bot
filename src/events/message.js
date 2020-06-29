@@ -35,7 +35,7 @@ module.exports = class MessageEvent extends BaseEvent {
         client.resource.sendLive(
           client, process.env.LIVE_CHANNEL,
           `[INFO] - Command executed`,
-          `Command: ${command.name}\n`+
+          `Command: ${aliascommand.name}\n`+
           `Args: ${cmdArgs.join(` `)}\n`+
           `User: ${message.author.tag}\n`+
           `User ID: ${message.author.id}`
