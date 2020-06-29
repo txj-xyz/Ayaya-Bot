@@ -35,7 +35,7 @@ module.exports = class PlayCommand extends BaseCommand {
       voiceChannel
     });
 
-    client.music.search(args.join(` `), message.author).then( async result => {
+    client.music.search(args.join(` `), message.author).then( async (result) => {
       switch (result.loadType) {
         case `TRACK_LOADED`:
           player.queue.add(result.tracks[0]);
@@ -59,7 +59,7 @@ module.exports = class PlayCommand extends BaseCommand {
           break;
         
         case `PLAYLIST_LOADED`:
-          console.log("PLAYLIST_LOADED")
+          console.log("[INFO][MUSIC] - PLAYLIST_LOADED")
           result.playlist.tracks.forEach(track => player.queue.add(track));
           const duration = Utils.formatTime(result.playlist.tracks.reduce((acc, cur) => ({duration: acc.duration + cur.duration})).duration, true);
             loading.edit(client.resource.embed()
@@ -70,17 +70,26 @@ module.exports = class PlayCommand extends BaseCommand {
           break;
 
         case `NO_MATCHES` :
+          console.log("[INFO][MUSIC] - NO_MATCHES")
           loading.edit(client.resource.embed()
             .setAuthor("Failed", "https://cdn.discordapp.com/emojis/694636239810330724.png", "https://discord.gg/CSJkCGx")
             .setDescription(`There was an error while trying to play the song. Please run the command again!`));
           break;
 
         case `LOAD_FAILED` :
+          console.log("[INFO][MUSIC] - LOAD_FAILED")
           loading.edit(client.resource.embed()
             .setAuthor("Failed", "https://cdn.discordapp.com/emojis/694636239810330724.png", "https://discord.gg/CSJkCGx")
             .setDescription(`There was an error while trying to play the song. Please run the command again!`));
           break;
       }
-    });
+    }).catch(error => {
+      console.log(error)
+      console.log(`[INFO][MUSIC] - No Tracks Found`)
+      loading.edit(client.resource.embed()
+      .setAuthor("Failed", "https://cdn.discordapp.com/emojis/694636239810330724.png", "https://discord.gg/CSJkCGx")
+      .setDescription(`Sorry, I was not able to find a song by that name. Please run the command again!`)
+      );
+    })
   }
 }
