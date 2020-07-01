@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = class RemoveCommand extends BaseCommand {
   constructor() {
-    super('remove', 'music', ['delete'], 'Remove a song from the queue.');
+    super('remove', 'music', [''], 'Remove a song from the queue.');
   }
 
   async run(client, message, args) {
